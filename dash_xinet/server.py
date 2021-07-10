@@ -66,7 +66,7 @@ def create_app(name=NAME, server_url=None, title='Dash', external_stylesheets=No
     return app
 
 
-async def run_server(app, layout, host=host_ip, port=80, mode='external', debug=True, **kw):
+async def run_server(app, layout, host=host_ip, port=8050, mode='external', debug=True, **kw):
     # host='0.0.0.0' 、 127.0.0.1
     # app = create_app()
     app.layout = layout
