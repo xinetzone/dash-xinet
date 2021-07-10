@@ -5,7 +5,7 @@ with open("README.md", "r", encoding='utf-8') as fh:
 
 setuptools.setup(
     name="dash_xinet", 
-    version="0.0.2",
+    version="v0.0.3",
     author="xinetzone",
     author_email="xinzone@outlook.com",
     description="Dash App",
