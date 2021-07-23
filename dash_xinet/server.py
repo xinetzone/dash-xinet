@@ -1,10 +1,8 @@
 from jupyter_dash import JupyterDash
 import socket
 
-# Function to display hostname and
-# IP address
 index_string_template = '''<!DOCTYPE html>
-<html lang={%lang%}>
+<html lang=zh>
     <head>
         {%metas%}
         <title>{%title%}</title>
@@ -28,7 +26,6 @@ index_string_template = '''<!DOCTYPE html>
 class Dash(JupyterDash):
     def interpolate_index(self, **kwargs):
         return index_string_template.format(
-            lang=kwargs.get('lang'),
             app_entry=kwargs.get('app_entry'),
             config=kwargs.get('config'),
             scripts=kwargs.get('scripts'),
