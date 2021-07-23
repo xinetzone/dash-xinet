@@ -1,35 +1,12 @@
-from jupyter_dash import JupyterDash
+from jupyter_dash import JupyterDash as Dash
 import socket
 
-index_string_template = '''<!DOCTYPE html>
-<html lang=zh>
-    <head>
-        {%metas%}
-        <title>{%title%}</title>
-        {%favicon%}
-        {%css%}
-    </head>
-    <body>
-        <header>My Custom header</header>
-        {%app_entry%}
-        <article>
-            {%config%}
-            {%scripts%}
-            {%renderer%}
-        </article>
-        <footer>My Custom footer</footer>
-    </body>
-</html>
-'''
-
-
-class Dash(JupyterDash):
-    def interpolate_index(self, **kwargs):
-        return index_string_template.format(
-            app_entry=kwargs.get('app_entry'),
-            config=kwargs.get('config'),
-            scripts=kwargs.get('scripts'),
-            renderer=kwargs.get('renderer'))
+# def interpolate_str(template, **data):
+#     s = template
+#     for k, v in data.items():
+#         key = "{%" + k + "%}"
+#         s = s.replace(key, v)
+#     return s
 
 
 def get_Host_name_IP():
@@ -89,13 +66,34 @@ def create_app(name=NAME, server_url=None, title='Dash', external_stylesheets=No
         'external_scripts': external_scripts
     }
     kwargs.update(kw)
-    app = Dash(name, server_url=server_url, title=title, lang='zh', **kwargs)
+    app = Dash(name, server_url=server_url, title=title, **kwargs)
     return app
+
+
+index_string_template = '''<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        {%metas%}
+        <title>{%title%}</title>
+        {%favicon%}
+        {%css%}
+    </head>
+    <body>
+        {%app_entry%}
+        <article>
+            {%config%}
+            {%scripts%}
+            {%renderer%}
+        </article>
+    </body>
+</html>
+'''
 
 
 async def run_server(app, layout, host=host_ip, port=8050, mode='external', debug=True, **kw):
     # host='0.0.0.0' 、 127.0.0.1
     # app = create_app()
+    app.index_string = index_string_template
     app.layout = layout
     app.run_server(mode, host=host, port=port,
                    debug=debug, use_reloader=False, **kw)
