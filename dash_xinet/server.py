@@ -1,8 +1,38 @@
-from jupyter_dash import JupyterDash as Dash
+from jupyter_dash import JupyterDash
 import socket
 
 # Function to display hostname and
 # IP address
+index_string_template = '''<!DOCTYPE html>
+<html lang={%lang%}>
+    <head>
+        {%metas%}
+        <title>{%title%}</title>
+        {%favicon%}
+        {%css%}
+    </head>
+    <body>
+        <header>My Custom header</header>
+        {%app_entry%}
+        <footer>
+            {%config%}
+            {%scripts%}
+            {%renderer%}
+        </footer>
+        <footer>My Custom footer</footer>
+    </body>
+</html>
+'''
+
+
+class Dash(JupyterDash):
+    def interpolate_index(self, **kwargs):
+        return index_string_template.format(
+            lang=kwargs.get('lang'),
+            app_entry=kwargs.get('app_entry'),
+            config=kwargs.get('config'),
+            scripts=kwargs.get('scripts'),
+            renderer=kwargs.get('renderer'))
 
 
 def get_Host_name_IP():
@@ -62,7 +92,7 @@ def create_app(name=NAME, server_url=None, title='Dash', external_stylesheets=No
         'external_scripts': external_scripts
     }
     kwargs.update(kw)
-    app = Dash(name, server_url=server_url, title=title, **kwargs)
+    app = Dash(name, server_url=server_url, title=title, lang='zh', **kwargs)
     return app
 
 
