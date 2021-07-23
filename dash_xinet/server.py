@@ -14,11 +14,11 @@ index_string_template = '''<!DOCTYPE html>
     <body>
         <header>My Custom header</header>
         {%app_entry%}
-        <footer>
+        <article>
             {%config%}
             {%scripts%}
             {%renderer%}
-        </footer>
+        </article>
         <footer>My Custom footer</footer>
     </body>
 </html>
