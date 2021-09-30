@@ -56,9 +56,7 @@ def create_app(name=NAME, server_url=None, title='Dash', external_stylesheets=No
     _external_stylesheets = ['https://xinetzone.github.io/Font-Awesome/css/all.css',
                              'https://xinetzone.github.io/w3css/4/w3.css',
                              'https://xinetzone.github.io/xinet-css/tabs.css']
-    if external_stylesheets:
-        external_stylesheets += _external_stylesheets
-    else:
+    if external_stylesheets==None:
         external_stylesheets = _external_stylesheets
     kw = {
         'meta_tags': META_TAGS,
