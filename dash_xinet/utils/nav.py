@@ -5,31 +5,27 @@ __all__ = ['create_nav']
 
 def create_icon_button(icon_class, icon_name, button_id=''):
     icon = html.I(f' {icon_name}', className=icon_class)
-    button = html.Button(icon,
+    return html.Button(icon,
                          className='w3-button w3-padding-small',
                          type='button',
                          id=button_id)
-    return button
 
 
 def create_icon_label(icon_class, icon_name, htmlFor):
     icon = html.I(f' {icon_name}', className=icon_class)
-    label = html.Label(icon,
+    return html.Label(icon,
                        className='w3-bar-item w3-button',
                        id=htmlFor,
                        htmlFor=htmlFor)
-    return label
 
 
 def create_label_li(label):
-    li = html.Li(label)
-    return li
+    return html.Li(label)
 
 
 def create_ul(li_list):
-    ul = html.Ul(li_list,
+    return html.Ul(li_list,
                  className="w3-dropdown-content w3-bar-block w3-card-4")
-    return ul
 
 
 def create_menu(labels, button_icon_class, button_icon_name):
@@ -72,6 +68,5 @@ def create_nav():
     run_icon_class = 'far fa-play-circle'
     run_sec = create_menu(run_labels, run_icon_class, run_icon_name)
 
-    nav = html.Nav([file_sec, edit_sec, display_sec, run_sec],
+    return html.Nav([file_sec, edit_sec, display_sec, run_sec],
                    className='w3-bar w3-bottombar w3-border-top')
-    return nav
